@@ -27,6 +27,27 @@ if page == "Dashboard Home":
     col2.metric("Total Orders", kpis['Total Orders'])
     col3.metric("Avg Order Value", f"₹{kpis['Average Order Value']:,.0f}")
 
+    st.markdown("---")
+
+    overview_col1, overview_col2 = st.columns(2)
+
+    with overview_col1:
+        st.subheader("🏆 Top 5 Products")
+        top = get_top_products()
+        st.dataframe(top[["Product_Name", "Total_Revenue"]], use_container_width=True)
+
+    with overview_col2:
+        st.subheader("⚠️ Low Stock Alerts")
+        low_stock = get_low_stock(threshold=10)
+        if low_stock.empty:
+            st.success("All products sufficiently stocked.")
+        else:
+            st.dataframe(low_stock, use_container_width=True)
+
+    st.subheader("🌆 Revenue by City")
+    city = get_city_sales()
+    st.dataframe(city, use_container_width=True)
+
 elif page == "Sales Dashboard":
     st.title("📈 Sales Dashboard")
 

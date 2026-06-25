@@ -94,7 +94,7 @@ DB_HOST=localhost
 
 DB_USER=root
 
-DB_PASSWORD=your_password
+DB_PASSWORD=root
 
 DB_NAME=retailiq
 5. Run the dashboard:
